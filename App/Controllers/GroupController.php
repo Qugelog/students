@@ -29,8 +29,7 @@ class GroupController extends Controller
 
 	public function update($id)
 	{
-		$validator = v::key('name', v::stringType()->notEmpty()->length(5, 10));
-		$this->validate($validator);
+		validateStringField('name', '5', '10');
 
 		$data = ['name' => $_POST['name']];
 
@@ -38,12 +37,14 @@ class GroupController extends Controller
 		$this->flasher->success('Группа успешно обновлена!');
 
 
-//		return redirect('/groups');
+		return redirect('/groups');
 	}
 
 	public function store()
 	{
 		$data = ['name' => $_POST['name']];
+
+		validateStringField('name', '5', '10');
 
 		$this->database->create('groups', $data);
 		$this->flasher->success('Группа успешно добавлена!');
@@ -57,20 +58,6 @@ class GroupController extends Controller
 		$this->flasher->error('Группа успешно удалена!');
 
 		return back();
-	}
-
-	private function validate($validator)
-	{
-		try
-		{
-			$validator->assert('Привет');
-		} catch (ValidationException $exception)
-		{
-			$exception->getMessage();
-			$this->flasher->error('');
-
-			return redirect('/groups');
-		}
 	}
 
 

@@ -27,6 +27,8 @@ class SubjectController extends Controller
 	{
 		$data = ['name' => $_POST['name']];
 
+		validateStringField('name', '5', '50', 'Введите название предмета!');
+
 		$this->database->update('subjects', $id, $data);
 		$this->flasher->success('Предмет успешно обновлен!');
 
@@ -36,6 +38,8 @@ class SubjectController extends Controller
 	public function store()
 	{
 		$data = ['name' => $_POST['name'],];
+
+		validateStringField('name', '5', '50', 'Введите название предмета!');
 
 		$this->database->create('subjects', $data);
 		$this->flasher->success('Предмет успешно добавлен!');

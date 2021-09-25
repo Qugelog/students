@@ -54,8 +54,10 @@ class ScoreController extends Controller
 
 		$data = [
 			'id' => $_POST['id'],
-			'score' => $_POST['score']
+			'score' => (int) $_POST['score']
 		];
+
+		validateNum('score', '0', '100', 'Выставите балл от 0 до 100!');
 
 		$update = $this->queryFactory->newUpdate();
 		$update->table('scores')
@@ -67,6 +69,7 @@ class ScoreController extends Controller
 
 		$stn->execute($update->getBindValues());
 
+
 		$this->flasher->success('Балл успешно обновлен!');
 
 		return redirect('/scores');
@@ -77,8 +80,12 @@ class ScoreController extends Controller
 		$data = [
 			'student_id' => $_POST['student'],
 			'subject_id' => $_POST['subject'],
-			'score' => $_POST['score']
+			'score' => (int) $_POST['score']
 		];
+
+		validateStringField('student', null, null, 'Выберите студента');
+		validateStringField('subject', null, null, 'Выберите предмет');
+		validateNum('score', '0', '100', 'Выставите балл от 0 до 100!');
 
 		$this->database->create('scores', $data);
 		$this->flasher->success('Балл успешно выставлен!');

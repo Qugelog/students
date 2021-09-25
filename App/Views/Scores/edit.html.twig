@@ -6,7 +6,7 @@
             <div class="col-6 offset-3">
                 <div class="row">
                     <h3 class="text-center mt-5">Редактировать балл</h3>
-
+                    {{ flasher.display }}
                     <form action="/scores/{{ score.id }}/update" method="POST" name="score_edit">
                         <div class="mb-3  pt-5 row">
                             <label for="score" class="col-sm-2 col-form-label">Балл</label>

@@ -50,6 +50,9 @@ class StudentController extends Controller
 			'group_id' => $_POST['group']
 		];
 
+		validateStringField('name', '5', '50', 'Заполните данные о студенте!');
+		validateStringField('group', null, null, 'Выберите группу!');
+
 		$this->database->update('students', $id, $data);
 		$this->flasher->success('Студент успешно обновлен!');
 
@@ -62,6 +65,9 @@ class StudentController extends Controller
 			'full_name' => $_POST['name'],
 			'group_id' => $_POST['group']
 		];
+
+		validateStringField('name', '5', '50', 'Заполните данные о студенте!');
+		validateStringField('group', null, null, 'Выберите группу!');
 
 		$this->database->create('students', $data);
 		$this->flasher->success('Студент успешно добавлен!');
