@@ -1,0 +1,35 @@
+{% extends "/layout.html.twig" %}
+
+{% block content %}
+    <section class="subjects__list">
+        <div class="container">
+            <div class="col-6 offset-3">
+                <div class="row pt-5">
+                    {{ flasher.display }}
+                    <table class="table">
+                        <thead class="table-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Предмет</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for subject in subjects  %}
+                            <tr>
+                                <th scope="row">{{ subject.id }}</th>
+                                <td>{{ subject.name }}</td>
+                                <th>
+                                    <a href="/subjects/{{ subject.id }}/edit" class="btn btn-primary" data-bs-toggle="tooltip" title="Изменить"><i class="lni lni-pencil"></i></a>
+                                    <a href="/subjects/{{ subject.id }}/remove" class="btn btn-danger"  data-bs-toggle="tooltip" title="Удалить"><i class="lni lni-trash-can"></i></a>
+                                </th>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="/subjects/add" class="btn btn-primary">Добавить предмет</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

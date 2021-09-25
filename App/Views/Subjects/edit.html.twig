@@ -1,0 +1,24 @@
+{% extends "/layout.html.twig" %}
+
+{% block content %}
+    <section class="subject__edit">
+        <div class="container">
+            <div class="col-6 offset-3">
+                <div class="row">
+                    <h3 class="text-center mt-5">Редактировать предмета {{ subject.name }} (#{{ subject.id }})</h3>
+
+                    <form action="/subjects/{{ subject.id }}/update" method="POST" name="subject_edit">
+                        <div class="mb-3  pt-5 row">
+                            <label for="subject" class="col-sm-2 col-form-label">Предмет</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" name="id" value="{{ subject.id }}">
+                                <input type="text" name="name" value="{{ subject.name }}" id="subject" class="form-control">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Обновить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "/layout.html.twig" %}
+
+{% block content %}
+    <section class="subject__edit">
+        <div class="container">
+            <div class="col-6 offset-3">
+                <div class="row">
+                    <h3 class="text-center mt-5">Редактировать балл</h3>
+
+                    <form action="/scores/{{ score.id }}/update" method="POST" name="score_edit">
+                        <div class="mb-3  pt-5 row">
+                            <label for="score" class="col-sm-2 col-form-label">Балл</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" name="id" value="{{ score.id }}">
+                                <input type="text" name="score" value="{{ score.score }}" id="score" class="form-control">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Обновить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

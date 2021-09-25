@@ -1,0 +1,8 @@
+.navbar-brand img {
+    max-width: 30px;
+    max-height: 30px;
+}
+
+button.close[data-dismiss="alert"] {
+    display: none !important;
+}

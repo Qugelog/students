@@ -2,14 +2,16 @@
 
 namespace App\Helpers;
 
+use Twig\Environment;
+
 class Core
 {
-	public static function view(string $path, array $params = []): void
+	public function view(string $path, array $params = []): void
 	{
-		echo  self::components('Twig')->render($path, $params);
+		echo  $this->components('Environment')->render($path, $params);
 	}
 
-	public static function components(string $name)
+	public function components(string $name)
 	{
 		global $app;
 		return $app->get($name);

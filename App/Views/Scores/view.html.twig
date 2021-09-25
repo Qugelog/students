@@ -1,0 +1,41 @@
+{% extends "/layout.html.twig" %}
+
+{% block content %}
+    <section class="students__list">
+        <div class="container">
+            <div class="col-6 offset-3">
+                <div class="row pt-5">
+                    {{ flasher.display }}
+                    <table class="table">
+                        <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Студент</th>
+                            <th scope="col">Предмет</th>
+                            <th scope="col">Баллы</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for score in scores  %}
+                            <tr>
+                                <th scope="row">{{ score.full_name }}</th>
+                                <td>{{ score.sname }}</td>
+                                <td>{{ score.score }}</td>
+                                <th>
+                                    {% if score.score != null  %}
+                                    <a href="/scores/{{ score.score_id }}/edit" class="btn btn-primary" data-bs-toggle="tooltip" title="Изменить"><i class="lni lni-pencil"></i></a>
+                                    <a href="/scores/{{ score.score_id }}/remove" class="btn btn-danger"  data-bs-toggle="tooltip" title="Удалить"><i class="lni lni-trash-can"></i></a>
+                                    {% else %}
+                                    <a href="/scores/add" class="btn btn-success" data-bs-toggle="tooltip" title="Добавить"><i class="lni lni-plus"></i></a>
+                                   {% endif %}
+                                </th>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="/scores/add" class="btn btn-primary">Выставить оценку</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

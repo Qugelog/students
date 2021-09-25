@@ -1,0 +1,52 @@
+{% extends "/layout.html.twig" %}
+
+{% block content %}
+    <div class="container pt-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100 border-dark">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Список студентов</h5>
+                        <p class="card-text"></p>
+                    </div>
+                    <div class="d-grid gap-2 mb-5 col-9 mx-auto">
+                        <a href="/students" class="btn btn-outline-dark">Просмотреть</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-dark">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Список групп</h5>
+                        <p class="card-text"></p>
+                    </div>
+                    <div class="d-grid gap-2 mb-5 col-9 mx-auto">
+                        <a href="/groups" class="btn btn-outline-dark">Просмотреть</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-dark">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Оценки студентов</h5>
+                        <p class="card-text"></p>
+                    </div>
+                    <div class="d-grid gap-2 mb-5 col-9 mx-auto">
+                        <a href="/scores" class="btn btn-outline-dark">Просмотреть</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-dark">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Предметы</h5>
+                        <p class="card-text"></p>
+                    </div>
+                    <div class="d-grid gap-2 mb-5 col-9 mx-auto">
+                        <a href="/subjects" class="btn btn-outline-dark">Просмотреть</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

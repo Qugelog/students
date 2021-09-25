@@ -1,0 +1,35 @@
+{% extends "/layout.html.twig" %}
+
+{% block content %}
+    <section class="students__list">
+        <div class="container">
+            <div class="col-6 offset-3">
+                <div class="row pt-5">
+                    {{ flasher.display }}
+                    <table class="table">
+                        <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Студент</th>
+                            <th scope="col">Группа</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for student in students  %}
+                            <tr>
+                                <th scope="row">{{ student.full_name }}</th>
+                                <td>{{ student.group }}</td>
+                                <th>
+                                    <a href="/students/{{ student.id }}/edit" class="btn btn-primary" data-bs-toggle="tooltip" title="Изменить"><i class="lni lni-pencil"></i></a>
+                                    <a href="/students/{{ student.id }}/remove" class="btn btn-danger"  data-bs-toggle="tooltip" title="Удалить"><i class="lni lni-trash-can"></i></a>
+                                </th>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="/students/add" class="btn btn-primary">Добавить студента</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

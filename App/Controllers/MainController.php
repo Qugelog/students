@@ -2,13 +2,13 @@
 
 namespace App\Controllers;
 
-use App\Helpers\Core;
+use App\Services\Database;
 
-class MainController extends Controller
+ class MainController extends Controller
 {
 	public function index()
 	{
-		Core::view('index.html');
+		echo $this->view->render('index.html.twig');
 	}
 
 }
