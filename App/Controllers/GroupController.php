@@ -13,12 +13,12 @@ class GroupController extends Controller
     public function show()
     {
     	$groups = $this->database->all('groups');
-    	view('Groups/view.html.twig', ['groups' => $groups, 'flasher' => $this->flasher]);
+    	view('Groups/view.twig', ['groups' => $groups, 'flasher' => $this->flasher]);
     }
 
 	public function addForm()
 	{
-		view('Groups/add.html.twig', ['flasher' => $this->flasher]);
+		view('Groups/add.twig', ['flasher' => $this->flasher]);
 	}
 
     public function edit($id)

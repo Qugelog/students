@@ -19,13 +19,13 @@ class StudentController extends Controller
 
 		$students = $stn->fetchAll(\PDO::FETCH_ASSOC);
 
-		view('Students/view.html.twig', ['students' => $students, 'flasher' => $this->flasher]);
+		view('Students/view.twig', ['students' => $students, 'flasher' => $this->flasher]);
 	}
 
 	public function addForm()
 	{
 		$groups = $this->database->all('groups');
-		view('Students/add.html.twig', ['groups' => $groups, 'flasher' => $this->flasher]);
+		view('Students/add.twig', ['groups' => $groups, 'flasher' => $this->flasher]);
 	}
 
 	public function edit($id)
@@ -40,7 +40,7 @@ class StudentController extends Controller
 		$student = $stn->fetch(\PDO::FETCH_ASSOC);
 		$groups = $this->database->all('groups');
 
-		view('Students/edit.html.twig', ['student' => $student, 'flasher' => $this->flasher, 'groups' => $groups]);
+		view('Students/edit.twig', ['student' => $student, 'flasher' => $this->flasher, 'groups' => $groups]);
 	}
 
 	public function update($id)

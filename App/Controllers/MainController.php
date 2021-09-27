@@ -8,7 +8,7 @@ use App\Services\Database;
 {
 	public function index()
 	{
-		echo $this->view->render('index.html.twig');
+		echo $this->view->render('index.twig');
 	}
 
 }

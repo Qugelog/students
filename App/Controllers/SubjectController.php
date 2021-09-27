@@ -7,20 +7,20 @@ class SubjectController extends Controller
 	public function show()
 	{
 		$subjects = $this->database->all('subjects');
-		view('Subjects/view.html.twig', ['subjects' => $subjects, 'flasher' => $this->flasher]);
+		view('Subjects/view.twig', ['subjects' => $subjects, 'flasher' => $this->flasher]);
 	}
 
 	public function addForm()
 	{
 		$subjects = $this->database->all('subjects');
-		view('Subjects/add.html.twig', ['subjects' => $subjects, 'flasher' => $this->flasher]);
+		view('Subjects/add.twig', ['subjects' => $subjects, 'flasher' => $this->flasher]);
 	}
 
 	public function edit($id)
 	{
 		$subject = $this->database->findById('subjects', $id);
 
-		view('Subjects/edit.html.twig', ['subject' => $subject, 'flasher' => $this->flasher]);
+		view('Subjects/edit.twig', ['subject' => $subject, 'flasher' => $this->flasher]);
 	}
 
 	public function update($id)

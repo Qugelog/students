@@ -20,7 +20,7 @@ class ScoreController extends Controller
 
 		$scores = $stn->fetchAll(\PDO::FETCH_ASSOC);
 
-		view('Scores/view.html.twig', ['scores' => $scores, 'flasher' => $this->flasher]);
+		view('Scores/view.twig', ['scores' => $scores, 'flasher' => $this->flasher]);
 	}
 
 	public function addForm()
@@ -28,7 +28,7 @@ class ScoreController extends Controller
 		$students = $this->database->all('students');
 		$subjects = $this->database->all('subjects');
 
-		view('Scores/add.html.twig', ['students' => $students, 'subjects' => $subjects, 'flasher' => $this->flasher]);
+		view('Scores/add.twig', ['students' => $students, 'subjects' => $subjects, 'flasher' => $this->flasher]);
 	}
 
 	public function edit($id)
@@ -46,7 +46,7 @@ class ScoreController extends Controller
 
 		$score = $stn->fetch(\PDO::FETCH_ASSOC);
 
-		view('Scores/edit.html.twig', ['score' => $score, 'flasher' => $this->flasher]);
+		view('Scores/edit.twig', ['score' => $score, 'flasher' => $this->flasher]);
 	}
 
 	public function update($id)
