@@ -24,7 +24,7 @@ class GroupController extends Controller
     public function edit($id)
 	{
 		$group = $this->database->findById('groups', $id);
-		view('Groups/edit.html.twig', ['group' => $group, 'flasher' => $this->flasher]);
+		view('Groups/edit.twig', ['group' => $group, 'flasher' => $this->flasher]);
 	}
 
 	public function update($id)

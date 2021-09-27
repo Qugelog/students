@@ -93,7 +93,8 @@ $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 switch ($routeInfo[0]) {
 	// Если нет страницы
 	case FastRoute\Dispatcher::NOT_FOUND:
-		echo '404';
+		$twig = $container->get('Twig');
+		echo $twig->render('Errors/404.twig');
 		break;
 
 	// Если нет метода для обработки
