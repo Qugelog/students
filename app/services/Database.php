@@ -18,6 +18,11 @@ class Database
 		$this->queryFactory = $queryFactory;
 	}
 
+	/**
+	 * @param string $table
+	 * @param int|null $limit
+	 * @return array|false
+	 */
 	public function all(string $table, int $limit = null)
 	{
 		$select = $this->queryFactory->newSelect();
@@ -32,7 +37,12 @@ class Database
 		return $sth->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-	public function findById($table,$id)
+	/**
+	 * @param $table
+	 * @param $id
+	 * @return mixed
+	 */
+	public function findById($table, $id)
 	{
 		$select = $this->queryFactory->newSelect();
 		$select->cols(['*'])
@@ -47,6 +57,11 @@ class Database
 		return $sth->fetch(PDO::FETCH_ASSOC);
 	}
 
+	/**
+	 * @param $table
+	 * @param $cols
+	 * @return mixed
+	 */
 	public function find($table, $cols)
 	{
 		$select = $this->queryFactory->newSelect();
@@ -62,11 +77,12 @@ class Database
 		return $stn->fetch(PDO::FETCH_ASSOC);
 	}
 
-	public function join()
-	{
-	}
-
-	public function create($table,$data)
+	/**
+	 * @param $table
+	 * @param $data
+	 * @return string
+	 */
+	public function create($table, $data)
 	{
 		$insert = $this->queryFactory->newInsert();
 		$insert
@@ -81,7 +97,12 @@ class Database
 		return $this->pdo->lastInsertId($name);
 	}
 
-	public function update($table,$id, $data)
+	/**
+	 * @param $table
+	 * @param $id
+	 * @param $data
+	 */
+	public function update($table, $id, $data)
 	{
 		$update = $this->queryFactory->newUpdate();
 
@@ -96,7 +117,11 @@ class Database
 		$sth->execute($update->getBindValues());
 	}
 
-	public function delete($table,$id)
+	/**
+	 * @param $table
+	 * @param $id
+	 */
+	public function delete($table, $id)
 	{
 		$delete = $this->queryFactory->newDelete();
 

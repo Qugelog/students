@@ -6,6 +6,7 @@ $files =  array_merge(
 );
 
 
+
 $config = array_map(function ($file) {
 	return require ($file);
 }, $files);

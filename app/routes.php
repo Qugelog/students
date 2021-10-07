@@ -1,38 +1,9 @@
 <?php
 
-use App\Controllers\MainController;
+global $container;
 
-
-
-$containerBuilder = new \DI\ContainerBuilder();
-$containerBuilder->addDefinitions([
-	'TwigLoader' => Di\factory(function () {
-		return new Twig\Loader\FilesystemLoader('../App/Views/');
-	}),
-	'Twig' => DI\factory(function (\Psr\Container\ContainerInterface $c) {
-		return new Twig\Environment($c->get('TwigLoader'));
-	}),
-	'PDO' => DI\factory(function (\Psr\Container\ContainerInterface $c) {
-		$driver = config('db.driver');
-		$host = config('db.host');
-		$dbname = config('db.dbname');
-		$username = config('db.username');
-		$password = config('db.password');
-
-		return new PDO($driver . ':host=' . $host . ';dbname=' . $dbname, $username, $password);
-	}),
-	\Aura\SqlQuery\QueryFactory::class => function() {
-		return new \Aura\SqlQuery\QueryFactory('mysql');
-	},
-	'Flasher' => DI\factory(function () {
-		return new \Plasticbrain\FlashMessages\FlashMessages();
-	})
-]);
-
-$container = $containerBuilder->build();
-
-
-$dispatcher = FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $r) {
+$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r)
+{
 
 	// Main
 	$r->get('/', ['App\Controllers\MainController', 'index']);
@@ -72,9 +43,17 @@ $dispatcher = FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $r)
 
 	$r->post('/scores/{id: \d+}/update', ['App\Controllers\ScoreController', 'update']);
 	$r->post('/scores/store', ['App\Controllers\ScoreController', 'store']);
+
+
+	// Groups-Subjects
+	$r->get('/groups-subjects', ['App\Controllers\GroupsSubjectsController', 'view']);
+	$r->post('/groups-subjects', ['App\Controllers\GroupsSubjectsController', 'show']);
+
+	// RatingController
+	$r->get('/rating', ['App\Controllers\RatingController', 'showAll']);
+	$r->post('/rating', ['App\Controllers\RatingController', 'showRating']);
+
 });
-
-
 
 // Получаем метод запроса и сам URL
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -82,7 +61,7 @@ $uri = $_SERVER['REQUEST_URI'];
 
 // Проверяем, есть ли GET параметры
 if (false !== $pos = strpos($uri, '?')) {
-    $uri = substr($uri, 0, $pos);
+	$uri = substr($uri, 0, $pos);
 }
 // Декодируем URL
 $uri = rawurldecode($uri);

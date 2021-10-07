@@ -1,0 +1,25 @@
+{% extends "/layout.twig" %}
+
+{% block content %}
+    <section class="rating__view">
+        <div class="container">
+            <div class="col-6 offset-3">
+                <div class="row">
+                    <h3 class="text-center mt-5">Построить рейтинг</h3>
+                    {{ flasher.display }}
+                    <form action="/rating" method="POST">
+                        <div class="mb-3  pt-5 row">
+                            <label for="group" class="col-sm-4 col-form-label">Группа</label>
+                                <select name="group" class="form-select">
+                                    {% for group in groups %}
+                                        <option value="{{ group.id }}">{{ group.name }}</option>
+                                    {% endfor %}
+                                </select>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Построить рейтинг</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

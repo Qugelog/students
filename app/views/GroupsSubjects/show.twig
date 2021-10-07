@@ -1,0 +1,54 @@
+{% extends "/layout.twig" %}
+
+{% block content %}
+    <section class="gs__view">
+        <div class="container">
+            <div class="col-6 offset-3">
+                <div class="row">
+                    <h3 class="text-center mt-5">Показать предметы группы</h3>
+                    {{ flasher.display }}
+                    <form action="/groups-subjects" method="POST">
+                        <div class="mb-3  pt-5 row">
+                            <label for="group" class="col-sm-4 col-form-label">Группа</label>
+                            <select name="group" class="form-select">
+                                {% for group in groups %}
+                                    <option value="{{ group.id }}">{{ group.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Показать предметы</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {% if data  %}
+        <div class="container">
+            <div class="col-6 offset-3 py-5">
+                <div class="row">
+                    <table class="table table-hover table-responsive table-dark">
+                        <thead>
+                        <tr>
+                            <th>Группа</th>
+                            <th>Предмет</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for datum in data %}
+                            <tr>
+                                <td>{{ datum.gname }}</td>
+                                <td>{{ datum.sname }}</td>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                        <p class="text-center py-5">Похоже, что у данной группы нет предметов!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -4,7 +4,6 @@ use DI\ContainerBuilder;
 
 $builder = new ContainerBuilder();
 
-
 $builder->addDefinitions(require __DIR__ . '/dependencies.php');
 
 $container = $builder->build();
